@@ -12,6 +12,29 @@
 #define NUM_VALUES 100
 
 
+void bubblesort(int* values, size_t len)
+{
+    bool sorted = false;
+    int tmp;
+    int iters = 0;
+    while (!sorted)
+    {
+        sorted = true;
+        ++iters;
+        for (size_t i=0; i<len-1; ++i)
+        {
+            if (values[i] > values[i+1])
+            {
+                sorted = false;
+                tmp = values[i];
+                values[i] = values[i+1];
+                values[i+1] = tmp;
+            }
+        }
+    }
+    printf("Finished in %d iterations\n", iters);
+}
+
 class BubbleSort 
 {
     public:
@@ -19,42 +42,42 @@ class BubbleSort
             : m_values(values), 
               m_len(len), 
               m_sorted(false), 
-              m_pos(0), 
-              m_iters(0) 
+              m_pos(0),
+              m_iters(0)
         {};
 
         void reset() 
         {
-            m_iters = 0;
+            printf("Finished after %d iterations\n", m_iters);
             m_pos = 0;
+            m_iters = 0;
+            m_assume_sorted = true;
             m_sorted = false;
         }
         void step() 
         {
-            m_sorted = m_iters == m_len-1 ? true : false;
-
             if (m_pos == m_len-1) {
                 m_pos = 0;
+                m_sorted = m_assume_sorted;
+                m_assume_sorted = true;
                 ++m_iters;
             }
-            if (!m_sorted)
+
+            if (m_values[m_pos] > m_values[m_pos+1]) 
             {
-                if (m_values[m_pos] > m_values[m_pos+1]) 
-                {
-                    int tmp = m_values[m_pos];
-                    m_values[m_pos] = m_values[m_pos+1];
-                    m_values[m_pos+1] = tmp;
-                }
+                m_assume_sorted = false;
+                int tmp = m_values[m_pos];
+                m_values[m_pos] = m_values[m_pos+1];
+                m_values[m_pos+1] = tmp;
             }
             ++m_pos;
         }
 
+        bool m_assume_sorted;
         bool m_sorted;
         int* m_values;
         size_t m_len;
         int m_pos;
-
-    private:
         int m_iters;
 };
 
@@ -138,20 +161,31 @@ int main(int argc, char** argv)
     int values[NUM_VALUES];
     populate_array(values, NUM_VALUES, 1, 100);
     BubbleSort bubble(values, NUM_VALUES);
+#if 0
+    print_array(values, NUM_VALUES);
+    putchar('\n');
+    bubblesort(values, NUM_VALUES);
+    print_array(values, NUM_VALUES);
+#endif
 
     while (!quit) 
     {
-        if (!bubble.m_sorted) 
-        {
+        //printf("Sorted: %d\n", bubble.m_sorted);
+        if (!bubble.m_sorted) {
             bubble.step();
         }
+        else {
+            populate_array(bubble.m_values, NUM_VALUES, 10, 100);
+            bubble.reset();
+        }
+#if 0
         else 
         {
             populate_array(bubble.m_values, NUM_VALUES, 10, 100);
             bubble.reset();
         }
+#endif
         visualize_array(bubble.m_values, NUM_VALUES, bubble.m_pos, renderer);
-        SDL_Delay(4);
         SDL_RenderPresent(renderer);
 
         while (SDL_PollEvent(&e) != 0)
