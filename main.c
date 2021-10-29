@@ -5,23 +5,22 @@
 #include <SDL2/SDL.h>
 
 
-#define SCREEN_WIDTH 800 
-#define SCREEN_HEIGHT 480
+#define SCREEN_WIDTH 1920 
+#define SCREEN_HEIGHT 800
 #define MIN_VALUE 10
 #define MAX_VALUE 100
-#define NUM_VALUES 100
+#define NUM_VALUES 250
 
 
 void bubblesort(int* values, size_t len)
 {
     bool sorted = false;
     int tmp;
-    int iters = 0;
+    int max = len-1;
     while (!sorted)
     {
         sorted = true;
-        ++iters;
-        for (size_t i=0; i<len-1; ++i)
+        for (size_t i=0; i<max; ++i)
         {
             if (values[i] > values[i+1])
             {
@@ -31,8 +30,8 @@ void bubblesort(int* values, size_t len)
                 values[i+1] = tmp;
             }
         }
+        --max;
     }
-    printf("Finished in %d iterations\n", iters);
 }
 
 class BubbleSort 
@@ -43,7 +42,8 @@ class BubbleSort
               m_len(len), 
               m_sorted(false), 
               m_pos(0),
-              m_iters(0)
+              m_iters(0),
+              m_highest(len-1)
         {};
 
         void reset() 
@@ -53,14 +53,16 @@ class BubbleSort
             m_iters = 0;
             m_assume_sorted = true;
             m_sorted = false;
+            m_highest = m_len-1;
         }
         void step() 
         {
-            if (m_pos == m_len-1) {
+            if (m_pos == m_highest) {
                 m_pos = 0;
                 m_sorted = m_assume_sorted;
                 m_assume_sorted = true;
                 ++m_iters;
+                --m_highest;
             }
 
             if (m_values[m_pos] > m_values[m_pos+1]) 
@@ -79,6 +81,7 @@ class BubbleSort
         size_t m_len;
         int m_pos;
         int m_iters;
+        int m_highest;
 };
 
 
@@ -106,10 +109,11 @@ void visualize_array(int* values, size_t len, int pos, SDL_Renderer* renderer)
         rect.h = values[i] * vscale;
         rect.x = i*(rect.w + (rect.w / 2));
         rect.y = SCREEN_HEIGHT - rect.h;
-
+#if 0
         if (values[i] > values[i+1]) {
-            SDL_SetRenderDrawColor(renderer, 0xFF, 0x00, 0x00, 0x00);
+             SDL_SetRenderDrawColor(renderer, 0xFF, 0x00, 0x00, 0x00);
         }
+#endif
         if (i == pos) {
             SDL_SetRenderDrawColor(renderer, 0x00, 0xFF, 0x00, 0x00);
         }
@@ -161,10 +165,10 @@ int main(int argc, char** argv)
     int values[NUM_VALUES];
     populate_array(values, NUM_VALUES, 1, 100);
     BubbleSort bubble(values, NUM_VALUES);
-#if 0
+#if 1
     print_array(values, NUM_VALUES);
-    putchar('\n');
     bubblesort(values, NUM_VALUES);
+    puts("Values after sorting");
     print_array(values, NUM_VALUES);
 #endif
 
@@ -173,6 +177,7 @@ int main(int argc, char** argv)
         //printf("Sorted: %d\n", bubble.m_sorted);
         if (!bubble.m_sorted) {
             bubble.step();
+            //SDL_Delay(16);
         }
         else {
             populate_array(bubble.m_values, NUM_VALUES, 10, 100);
