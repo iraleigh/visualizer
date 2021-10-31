@@ -41,7 +41,7 @@ void Visualizer::redraw()
         SDL_SetRenderDrawColor(renderer, 0xFF, 0xFF, 0xFF, 0xFF);
 
         SDL_Rect rect;
-        rect.w = 2;
+        rect.w = 4;
         rect.h = values[i] * vscale;
         rect.x = i*(rect.w + (rect.w / 2));
         rect.y = draw_area.h - rect.h;
