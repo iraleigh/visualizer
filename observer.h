@@ -12,7 +12,6 @@ class Observer
     public:
         Observer(Visualizer* visualizer);
         void update(DataEvent event, int index, int value);
-        void redraw();
     private:
         Visualizer* visualizer;
 };
