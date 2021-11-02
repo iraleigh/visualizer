@@ -19,9 +19,12 @@ class Data
         void attach(Observer* o, DataEvent e);
         void notify(DataEvent e, int index);
 
+        size_t length() const;
+
         int* values;
-        size_t length;
+
     private:
+        size_t length_;
         std::unordered_map<DataEvent, std::unordered_set<Observer*>> observers;
 };
 

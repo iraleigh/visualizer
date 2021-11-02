@@ -6,8 +6,9 @@
 
 #include "data.h"
 #include "observer.h"
-#include "visualizer.h"
+#include "sort.h"
 #include "util.h"
+#include "visualizer.h"
 
 
 #define SCREEN_WIDTH 640 
@@ -28,7 +29,7 @@ int main(int argc, char** argv)
     }
     else {
         window = SDL_CreateWindow(
-            "Visualizer", 
+            "Algorithm Visualizer", 
             SDL_WINDOWPOS_UNDEFINED, 
             SDL_WINDOWPOS_UNDEFINED, 
             SCREEN_WIDTH, 

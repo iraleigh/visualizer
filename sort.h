@@ -1,4 +1,6 @@
 #include <stdlib.h>
 
-void bubblesort(int* values, size_t len);
-void mergesort(int* values, int left, int right);
+#include "data.h"
+
+void bubblesort(Data data, size_t len);
+void mergesort(Data data, int left, int right);
