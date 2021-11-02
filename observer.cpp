@@ -7,23 +7,21 @@ DataObserver::DataObserver(Visualizer* visualizer)
 
 void DataObserver::update(DataEvent event, int index, int value) 
 {
+    SDL_Color old_color = visualizer->get_index_color(index);   // capture the current color at index
     switch (event) 
     {
-        SDL_Color old_color;
         case ACCESSED:
-            old_color = visualizer->get_index_color(index);
+            // Set the current element color to green
             visualizer->set_index_color(index, 0x00, 0xFF, 0x00, 0xFF);
-            visualizer->redraw();
-            visualizer->set_index_color(index, old_color);
             break;
         case MODIFIED:
-            old_color = visualizer->get_index_color(index);
+            // Set the accessed element color to blue
             visualizer->set_index_color(index, 0x00, 0x00, 0xFF, 0xFF);
-            visualizer->redraw();
-            visualizer->set_index_color(index, old_color);
             break;
         default:
             break;
     }
+    visualizer->redraw();
+    visualizer->set_index_color(index, old_color);  // restore the previous color at index
 }
 
