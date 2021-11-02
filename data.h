@@ -1,3 +1,14 @@
+/******************************************************************************
+*   data.h
+*
+*   Author:     Zachary Colbert
+*   Contact:    zcolbert@sfsu.edu
+*
+*   Description:
+*       Declaration of Data class 
+******************************************************************************/
+
+
 #ifndef DATA_H
 #define DATA_H
 
@@ -13,8 +24,8 @@ class Data
     public:
         Data(int* values, size_t len);
 
-        int get(int i);
-        void set(int i, int val);
+        int get(int i, bool silent=false);
+        void set(int i, int val, bool silent=false);
 
         void attach(Observer* o, DataEvent e);
         void notify(DataEvent e, int index);
