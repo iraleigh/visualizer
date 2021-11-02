@@ -1,4 +1,13 @@
-#include <stdbool.h>
+/******************************************************************************
+*   Program:    Algorithm Visualizer
+*   Author:     Zachary Colbert
+*   Contact:    zcolbert@sfsu.edu
+*
+*   Description:
+*       Display an animation of various sorting algorithms.
+******************************************************************************/
+
+
 #include <stdio.h>
 #include <stdlib.h>
 
