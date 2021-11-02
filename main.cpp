@@ -84,7 +84,7 @@ int main(int argc, char** argv)
     {
         populate_array(values, NUM_VALUES, 1, 100);
         v.redraw();
-        bubblesort(data, NUM_VALUES);
+        bubblesort(data);
         //mergesort(data, 0, NUM_VALUES);
         v.redraw();
 
