@@ -11,7 +11,7 @@ class DataObserver
 {
     public:
         DataObserver(Visualizer* visualizer);
-        virtual void update(DataEvent event, int index, int value);
+        void update(DataEvent event, int index, int value);
     private:
         Visualizer* visualizer;
 };
