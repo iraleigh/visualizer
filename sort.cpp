@@ -1,15 +1,22 @@
+/******************************************************************************
+*   sort.cpp
+*
+*   Author:     Zachary Colbert
+*   Contact:    zcolbert@sfsu.edu
+*
+*   Description:
+*       Implementation of various sorting algorithms.
+******************************************************************************/
+
+
 #include "sort.h"
 
-#include <stdbool.h>
-#include <stdio.h>
 
-
-
-void bubblesort(Data data, size_t len)
+void bubblesort(Data data)
 {
     bool sorted = false;
     int tmp;
-    int max = len-1;
+    int max = data.length()-1;
     while (!sorted)
     {
         sorted = true;
