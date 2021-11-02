@@ -46,7 +46,7 @@ void Data::set(int i, int val, bool silent /* =false */)
     }
 }
 
-void Data::attach(Observer* observer, DataEvent event)
+void Data::attach(DataObserver* observer, DataEvent event)
 /* Attach an observer to watch for event */
 {
     observers[event].insert(observer);
@@ -55,7 +55,7 @@ void Data::attach(Observer* observer, DataEvent event)
 void Data::notify(DataEvent event, int index)
 /* Notify all observers of this event */
 {
-    std::unordered_set<Observer*> targets = observers[event];
+    std::unordered_set<DataObserver*> targets = observers[event];
     for (auto t: targets) 
     {
         t->update(event, index, values[index]);

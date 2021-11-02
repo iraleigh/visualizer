@@ -49,7 +49,6 @@ int main(int argc, char** argv)
         renderer = SDL_CreateRenderer(window, -1, SDL_RENDERER_ACCELERATED);
     }
 
-
     SDL_Color colors[NUM_VALUES];
     for (int i=0; i<NUM_VALUES; ++i)
     {
@@ -72,7 +71,7 @@ int main(int argc, char** argv)
 
     Visualizer v(renderer, screen_rect, values, colors, NUM_VALUES);
 
-    Observer o(&v);
+    DataObserver o(&v);
     data.attach(&o, ACCESSED);
     data.attach(&o, MODIFIED);
 

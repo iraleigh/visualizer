@@ -1,11 +1,11 @@
 #include "observer.h"
 
 
-Observer::Observer(Visualizer* visualizer)
+DataObserver::DataObserver(Visualizer* visualizer)
     :   visualizer(visualizer)
 {}
 
-void Observer::update(DataEvent event, int index, int value) 
+void DataObserver::update(DataEvent event, int index, int value) 
 {
     switch (event) 
     {

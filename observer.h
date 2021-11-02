@@ -1,5 +1,5 @@
-#ifndef OBSERVER_H
-#define OBSERVER_H
+#ifndef DATAOBSERVER_H
+#define DATAOBSERVER_H
 
 #include "dataevent.h"
 #include "visualizer.h"
@@ -7,11 +7,11 @@
 #include <SDL2/SDL.h>
 
 
-class Observer
+class DataObserver
 {
     public:
-        Observer(Visualizer* visualizer);
-        void update(DataEvent event, int index, int value);
+        DataObserver(Visualizer* visualizer);
+        virtual void update(DataEvent event, int index, int value);
     private:
         Visualizer* visualizer;
 };

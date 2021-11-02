@@ -27,7 +27,7 @@ class Data
         int get(int i, bool silent=false);
         void set(int i, int val, bool silent=false);
 
-        void attach(Observer* o, DataEvent e);
+        void attach(DataObserver* o, DataEvent e);
         void notify(DataEvent e, int index);
 
         size_t length() const;
@@ -36,7 +36,7 @@ class Data
 
     private:
         size_t length_;
-        std::unordered_map<DataEvent, std::unordered_set<Observer*>> observers;
+        std::unordered_map<DataEvent, std::unordered_set<DataObserver*>> observers;
 };
 
 
