@@ -17,27 +17,6 @@
 #define NUM_VALUES 100
 
 
-void bubblesort(Data data, size_t len)
-{
-    bool sorted = false;
-    int tmp;
-    int max = len-1;
-    while (!sorted)
-    {
-        sorted = true;
-        for (size_t i=0; i<max; ++i)
-        {
-            if (data.get(i) > data.get(i+1))
-            {
-                sorted = false;
-                tmp = data.get(i);
-                data.set(i, data.get(i+1));
-                data.set(i+1, tmp);
-            }
-        }
-        --max;
-    }
-}
 
 int main(int argc, char** argv)
 {
@@ -87,15 +66,17 @@ int main(int argc, char** argv)
     data.attach(&o, ACCESSED);
     data.attach(&o, MODIFIED);
 
-    v.redraw();
-    bubblesort(data, NUM_VALUES);
-    v.redraw();
 
 
     bool quit = false;
     SDL_Event e;
     while (!quit) 
     {
+        populate_array(values, NUM_VALUES, 1, 100);
+        v.redraw();
+        bubblesort(data, NUM_VALUES);
+        //mergesort(data, 0, NUM_VALUES);
+        v.redraw();
 
         while (SDL_PollEvent(&e) != 0)
         {
