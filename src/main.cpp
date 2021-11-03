@@ -1,5 +1,6 @@
 /******************************************************************************
 *   Program:    Algorithm Visualizer
+*
 *   Author:     Zachary Colbert
 *   Contact:    zcolbert@sfsu.edu
 *
