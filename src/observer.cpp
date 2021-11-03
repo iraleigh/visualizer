@@ -1,3 +1,15 @@
+/******************************************************************************
+*   observer.cpp 
+*
+*   Author:     Zachary Colbert
+*   Contact:    zcolbert@sfsu.edu
+*
+*   Description:
+*       Implementation of an Observer class that may subscribe to any
+*       publisher of DataEvents.
+******************************************************************************/
+
+
 #include "observer.h"
 
 
@@ -6,6 +18,7 @@ DataObserver::DataObserver(Visualizer* visualizer)
 {}
 
 void DataObserver::update(DataEvent event, int index, int value) 
+/* React to the given event */
 {
     SDL_Color old_color = visualizer->get_index_color(index);   // capture the current color at index
     switch (event) 

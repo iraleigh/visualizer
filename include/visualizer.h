@@ -1,3 +1,15 @@
+/******************************************************************************
+*   visualizer.h
+*
+*   Author:     Zachary Colbert
+*   Contact:    zcolbert@sfsu.edu
+*
+*   Description:
+*       Declaration of the Visualizer class which draws data on the screen
+*       in a bar graph format.
+******************************************************************************/
+
+
 #ifndef VISUALIZER_H
 #define VISUALIZER_H
 
@@ -20,7 +32,6 @@ class Visualizer
         SDL_Color get_index_color(int i);
         void set_index_color(int i, SDL_Color color);
         void set_index_color(int i, int r, int g, int b, int a);
-
 
     private:
         SDL_Renderer* renderer;

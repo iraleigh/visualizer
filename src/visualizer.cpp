@@ -1,3 +1,15 @@
+/******************************************************************************
+*   visualizer.cpp 
+*
+*   Author:     Zachary Colbert
+*   Contact:    zcolbert@sfsu.edu
+*
+*   Description:
+*       Implementation of the Visualizer class which draws data on the screen
+*       in a bar graph format.
+******************************************************************************/
+
+
 #include <stdexcept>
 
 #include "visualizer.h"
@@ -26,7 +38,6 @@ void Visualizer::draw_gridlines(size_t row_height)
         SDL_RenderDrawLine(renderer, 0, i, draw_area.w, i);
     }
 }
-
 
 void Visualizer::redraw()
 {
@@ -68,9 +79,10 @@ void Visualizer::set_index_color(int i, SDL_Color color)
     }
     else 
     {
-        throw std::runtime_error("Invalid index");
+        throw std::out_of_range("Failed to set color: Invalid index.");
     }
 }
+
 void Visualizer::set_index_color(int i, int r, int g, int b, int a)
 {
     if (i >= 0 && i < num_values)
@@ -82,9 +94,10 @@ void Visualizer::set_index_color(int i, int r, int g, int b, int a)
     }
     else 
     {
-        throw std::runtime_error("Invalid index on set");
+        throw std::out_of_range("Failed to set color: Invalid index.");
     }
 }
+
 SDL_Color Visualizer::get_index_color(int i)
 {
     if (i >= 0 && i < num_values)
@@ -93,6 +106,6 @@ SDL_Color Visualizer::get_index_color(int i)
     }
     else 
     {
-        throw std::runtime_error("Invalid index");
+        throw std::out_of_range("Failed to retrieve index color: Invalid index.");
     }
 }
