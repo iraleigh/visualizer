@@ -10,6 +10,7 @@
 
 
 #include <stdio.h>
+#include <stdlib.h> // random
 
 
 void populate_array(int* arr, size_t len, int min, int max)
